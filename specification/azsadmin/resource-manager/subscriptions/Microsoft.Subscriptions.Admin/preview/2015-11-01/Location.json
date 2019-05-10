@@ -23,24 +23,71 @@
             "$ref": "./examples/Location/List.json"
           }
         },
-        "description": "Get a list of all AzureStack location.",
-        "tags": [
-          "Locations"
-        ],
-        "operationId": "Locations_List",
-        "parameters": [
-          {
-            "$ref": "Subscriptions.json#/parameters/SubscriptionIdParameter"
-          },
-          {
-            "$ref": "Subscriptions.json#/parameters/ApiVersionParameter"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "$ref": "#/definitions/LocationList"
+        "/subscriptions/{subscriptionId}/providers/Microsoft.Subscriptions.Admin/locations/{location}": {
+            "get": {
+                "x-ms-examples": {
+                    "Get the specified location.": {
+                        "$ref": "./examples/Location/Get.json"
+                    }
+                },
+                "description": "Get the specified location.",
+                "tags": [
+                    "Locations"
+                ],
+                "operationId": "Locations_Get",
+                "parameters": [
+                    {
+                        "$ref": "Subscriptions.json#/parameters/SubscriptionIdParameter"
+                    },
+                    {
+                        "$ref": "Subscriptions.json#/parameters/LocationParameter"
+                    },
+                    {
+                        "$ref": "Subscriptions.json#/parameters/ApiVersionParameter"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Location"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "x-ms-examples": {
+                    "Updates the specified location.": {
+                        "$ref": "./examples/Location/Put.json"
+                    }
+                },
+                "description": "Updates the specified location.",
+                "tags": [
+                    "Locations"
+                ],
+                "operationId": "Locations_CreateOrUpdate",
+                "parameters": [
+                    {
+                        "$ref": "Subscriptions.json#/parameters/SubscriptionIdParameter"
+                    },
+                    {
+                        "$ref": "Subscriptions.json#/parameters/LocationParameter"
+                    },
+                    {
+                        "$ref": "Subscriptions.json#/parameters/ApiVersionParameter"
+                    },
+                    {
+                        "$ref": "#/parameters/NewLocationParameter"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Location"
+                        }
+                    }
+                }
             }
           }
         },

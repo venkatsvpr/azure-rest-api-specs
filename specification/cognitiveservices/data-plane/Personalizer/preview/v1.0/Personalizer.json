@@ -15,13 +15,13 @@
         "summary": "Get the service configuration.",
         "operationId": "ServiceConfiguration_Get",
         "consumes": [
-
+          
         ],
         "produces": [
           "application/json"
         ],
         "parameters": [
-
+          
         ],
         "responses": {
           "200": {
@@ -86,13 +86,13 @@
         "summary": "Get the policy configuration.",
         "operationId": "Policy_Get",
         "consumes": [
-
+          
         ],
         "produces": [
           "application/json"
         ],
         "parameters": [
-
+          
         ],
         "responses": {
           "200": {
@@ -115,13 +115,13 @@
         "summary": "Delete the current policy.",
         "operationId": "Policy_Delete",
         "consumes": [
-
+          
         ],
         "produces": [
           "application/json"
         ],
         "parameters": [
-
+          
         ],
         "responses": {
           "200": {
@@ -186,13 +186,13 @@
         "summary": "List all submitted evaluations.",
         "operationId": "Evaluations_List",
         "consumes": [
-
+          
         ],
         "produces": [
           "application/json"
         ],
         "parameters": [
-
+          
         ],
         "responses": {
           "200": {
@@ -260,7 +260,7 @@
         "summary": "Get the evaluation associated with the ID.",
         "operationId": "Evaluations_Get",
         "consumes": [
-
+          
         ],
         "produces": [
           "application/json"
@@ -298,10 +298,10 @@
         "summary": "Delete the evaluation associated with the ID.",
         "operationId": "Evaluations_Delete",
         "consumes": [
-
+          
         ],
         "produces": [
-
+          
         ],
         "parameters": [
           {
@@ -335,7 +335,7 @@
           "application/json"
         ],
         "produces": [
-
+          
         ],
         "parameters": [
           {
@@ -343,8 +343,7 @@
             "in": "path",
             "description": "The event id this reward applies to.",
             "required": true,
-            "type": "string",
-            "maxLength": 256
+            "type": "string"
           },
           {
             "name": "reward",
@@ -361,10 +360,7 @@
             "description": "Success"
           },
           "default": {
-            "description": "Invalid reward request.",
-            "schema": {
-              "$ref": "#/definitions/ErrorResponse"
-            }
+            "description": "*** Error Responses: ***\\n\\n * 400 Invalid arguments.\\n\\n * 404 ResourceNotFound."
           }
         },
         "x-ms-examples": {
@@ -382,10 +378,10 @@
         "summary": "Report that the specified event was actually displayed to the user and a reward should be expected for it.",
         "operationId": "Events_Activate",
         "consumes": [
-
+          
         ],
         "produces": [
-
+          
         ],
         "parameters": [
           {
@@ -393,8 +389,7 @@
             "in": "path",
             "description": "The event ID this activation applies to.",
             "required": true,
-            "type": "string",
-            "maxLength": 256
+            "type": "string"
           }
         ],
         "responses": {
@@ -402,10 +397,7 @@
             "description": "Success"
           },
           "default": {
-            "description": "Invalid reward request.",
-            "schema": {
-              "$ref": "#/definitions/ErrorResponse"
-            }
+            "description": "*** Error Responses: ***\\n\\n * 400 Invalid arguments.\\n\\n * 404 ResourceNotFound."
           }
         },
         "x-ms-examples": {
@@ -423,13 +415,13 @@
         "summary": "Deletes all the logs.",
         "operationId": "Log_Delete",
         "consumes": [
-
+          
         ],
         "produces": [
-
+          
         ],
         "parameters": [
-
+          
         ],
         "responses": {
           "204": {
@@ -451,13 +443,13 @@
         "summary": "Gets logs properties.",
         "operationId": "Log_GetProperties",
         "consumes": [
-
+          
         ],
         "produces": [
           "application/json"
         ],
         "parameters": [
-
+          
         ],
         "responses": {
           "200": {
@@ -485,13 +477,13 @@
         "summary": "Get current model.",
         "operationId": "Model_Get",
         "consumes": [
-
+          
         ],
         "produces": [
           "application/octet-stream"
         ],
         "parameters": [
-
+          
         ],
         "responses": {
           "200": {
@@ -514,13 +506,13 @@
         "summary": "Resets the model.",
         "operationId": "Model_Delete",
         "consumes": [
-
+          
         ],
         "produces": [
-
+          
         ],
         "parameters": [
-
+          
         ],
         "responses": {
           "204": {
@@ -545,13 +537,13 @@
         "summary": "Get model properties.",
         "operationId": "Model_GetProperties",
         "consumes": [
-
+          
         ],
         "produces": [
           "application/json"
         ],
         "parameters": [
-
+          
         ],
         "responses": {
           "200": {
@@ -571,10 +563,10 @@
     "/rank": {
       "post": {
         "tags": [
-          "Rank"
+          "Ranking"
         ],
         "summary": "A Personalizer rank request.",
-        "operationId": "Rank",
+        "operationId": "Events_Rank",
         "consumes": [
           "application/json"
         ],
@@ -600,114 +592,240 @@
             }
           },
           "default": {
-            "description": "Invalid rank request.",
-            "schema": {
-              "$ref": "#/definitions/ErrorResponse"
-            }
+            "description": "*** Error Responses: ***\\n\\n * 400 Invalid arguments.\\n\\n * 404 ResourceNotFound."
           }
         },
         "x-ms-examples": {
-          "Successful Rank request": {
-            "$ref": "./examples/Rank.json"
+          "Successful Events_Rank request": {
+            "$ref": "./examples/Events_Rank.json"
           }
         }
       }
     }
   },
   "definitions": {
-    "ErrorResponse": {
-      "description": "Used to return an error to the client",
+    "ServiceConfiguration": {
+      "description": "The configuration of the service.",
       "required": [
-        "error"
+        "rewardWaitTime",
+        "defaultReward",
+        "rewardAggregation",
+        "explorationPercentage",
+        "modelExportFrequency",
+        "logRetentionDays"
       ],
       "type": "object",
       "properties": {
-        "error": {
-          "$ref": "#/definitions/PersonalizerError",
-          "description": "The error object."
+        "rewardWaitTime": {
+          "description": "The time span waited until a request is marked with the default reward.",
+          "type": "string"
+        },
+        "defaultReward": {
+          "format": "float",
+          "description": "The reward given if a reward is not received within the specified wait time.",
+          "maximum": 1,
+          "minimum": -1,
+          "type": "number"
+        },
+        "rewardAggregation": {
+          "description": "The function used to process rewards.",
+          "type": "string"
+        },
+        "explorationPercentage": {
+          "format": "float",
+          "description": "The percentage of rank responses that will use exploration.",
+          "type": "number"
+        },
+        "modelExportFrequency": {
+          "description": "The time delay between exporting trained models.",
+          "type": "string"
+        },
+        "logRetentionDays": {
+          "format": "int32",
+          "description": "Number of days historical logs are to be maintained.",
+          "type": "integer"
         }
       }
     },
-    "PersonalizerError": {
-      "description": "The error object.",
+    "PolicyContract": {
+      "description": "Policy specifying how to train the model.",
       "required": [
-        "code",
-        "message"
+        "name",
+        "arguments"
       ],
       "type": "object",
       "properties": {
-        "code": {
-          "description": "High level error code.",
-          "enum": [
-            "BadRequest",
-            "ResourceNotFound",
-            "InternalServerError"
-          ],
-          "type": "string",
-          "x-ms-enum": {
-            "name": "ErrorCode",
-            "modelAsString": true,
-            "values": [
-              {
-                "value" : "BadRequest",
-                "description" : "Request could not be understood by the server."
-              },
-              {
-                "value" : "ResourceNotFound",
-                "description" : "Requested resource does not exist on the server."
-              },
-              {
-                "value" : "InternalServerError",
-                "description" : "A generic error has occurred on the server."
-              }
-            ]
-          }
-        },
-        "message": {
-          "description": "A message explaining the error reported by the service.",
+        "name": {
+          "description": "Name of the Policy.",
           "type": "string"
         },
-        "target": {
-          "description": "Error source element.",
+        "arguments": {
+          "description": "Arguments of the Policy.",
+          "type": "string"
+        }
+      }
+    },
+    "EvaluationContract": {
+      "description": "A counterfactual evaluation.",
+      "required": [
+        "name",
+        "startTime",
+        "endTime",
+        "policies"
+      ],
+      "type": "object",
+      "properties": {
+        "enableOfflineExperimentation": {
+          "description": "True if the evaluation should explore for a more optimal policy.",
+          "type": "boolean"
+        },
+        "name": {
+          "description": "The name of the evaluation.",
           "type": "string"
         },
-        "details": {
-          "description": "An array of details about specific errors that led to this reported error.",
+        "startTime": {
+          "format": "date-time",
+          "description": "The start time of the evaluation.",
+          "type": "string"
+        },
+        "endTime": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "policies": {
+          "description": "Additional policies to evaluate.",
           "type": "array",
           "items": {
-            "$ref": "#/definitions/PersonalizerError"
+            "$ref": "#/definitions/PolicyContract"
           }
-        },
-        "innerError": {
-          "$ref": "#/definitions/InternalError",
-          "description": "Finer error details."
         }
       }
     },
-    "InternalError": {
-      "description": "An object containing more specific information than the parent object about the error.",
+    "Evaluation": {
       "type": "object",
       "properties": {
-        "code": {
-          "description": "Detailed error code.",
-          "type": "string"
+        "id": {
+          "type": "string",
+          "readOnly": true
         },
-        "innererror": {
-          "$ref": "#/definitions/InternalError",
-          "description": "The error object."
+        "name": {
+          "type": "string",
+          "readOnly": true
+        },
+        "startTime": {
+          "format": "date-time",
+          "type": "string",
+          "readOnly": true
+        },
+        "endTime": {
+          "format": "date-time",
+          "type": "string",
+          "readOnly": true
+        },
+        "jobId": {
+          "type": "string",
+          "readOnly": true
+        },
+        "status": {
+          "enum": [
+            "completed",
+            "pending",
+            "failed",
+            "notSubmitted"
+          ],
+          "type": "string",
+          "readOnly": true,
+          "x-ms-enum": {
+            "name": "EvaluationJobStatus",
+            "modelAsString": true
+          }
+        },
+        "policyResults": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PolicyResult"
+          }
+        }
+      }
+    },
+    "PolicyResult": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "readOnly": true
+        },
+        "arguments": {
+          "type": "string",
+          "readOnly": true
+        },
+        "summary": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PolicyResultSummary"
+          },
+          "readOnly": true
+        },
+        "totalSummary": {
+          "allOf": [
+            {
+              "$ref": "#/definitions/PolicyResultSummary"
+            }
+          ],
+          "readOnly": true
+        }
+      }
+    },
+    "PolicyResultSummary": {
+      "type": "object",
+      "properties": {
+        "timeStamp": {
+          "format": "date-time",
+          "type": "string",
+          "readOnly": true
+        },
+        "ipsEstimatorNumerator": {
+          "format": "float",
+          "type": "number",
+          "readOnly": true
+        },
+        "ipsEstimatorDenominator": {
+          "format": "float",
+          "type": "number",
+          "readOnly": true
+        },
+        "snipsEstimatorDenominator": {
+          "format": "float",
+          "type": "number",
+          "readOnly": true
+        },
+        "aggregateTimeWindow": {
+          "type": "string",
+          "readOnly": true
+        },
+        "nonZeroProbability": {
+          "format": "float",
+          "type": "number"
+        },
+        "confidenceInterval": {
+          "format": "float",
+          "type": "number",
+          "readOnly": true
+        },
+        "sumOfSquares": {
+          "format": "float",
+          "type": "number",
+          "readOnly": true
         }
       }
     },
     "RewardRequest": {
       "description": "Reward given to a rank response.",
-      "required": [
-        "value"
-      ],
       "type": "object",
       "properties": {
         "value": {
           "format": "float",
-          "description": "Reward to be assigned to an action. Value should be between -1 and 1 inclusive.",
+          "description": "Reward to be assigned to an action. Value must be between -1 and 1 inclusive.",
           "type": "number"
         }
       }
@@ -785,7 +903,6 @@
         },
         "eventId": {
           "description": "Optionally pass an eventId that uniquely identifies this Rank event. \r\nIf null, the service generates a unique eventId. The eventId will be used for\r\nassociating this request with its reward, as well as seeding the pseudo-random\r\ngenerator when making a Personalizer call.",
-          "maxLength": 256,
           "type": "string"
         },
         "deferActivation": {
@@ -805,7 +922,6 @@
       "properties": {
         "id": {
           "description": "Id of the action.",
-          "maxLength": 256,
           "type": "string"
         },
         "features": {
@@ -831,13 +947,11 @@
         },
         "eventId": {
           "description": "The eventId for the round trip from request to response.",
-          "maxLength": 256,
           "type": "string",
           "readOnly": true
         },
         "rewardActionId": {
           "description": "The action chosen by the Personalizer service. This is the action for which to report the reward. This might not be the \r\nfirst found in \u0027ranking\u0027 if an action in the request in first position was part of the excluded ids.",
-          "maxLength": 256,
           "type": "string",
           "readOnly": true
         }
@@ -849,15 +963,12 @@
       "properties": {
         "id": {
           "description": "Id of the action",
-          "maxLength": 256,
           "type": "string",
           "readOnly": true
         },
         "probability": {
           "format": "float",
           "description": "Probability of the action",
-          "maximum": 1,
-          "minimum": 0,
           "type": "number",
           "readOnly": true
         }
@@ -886,8 +997,7 @@
       "required": true,
       "type": "string",
       "x-ms-parameter-location": "client",
-      "x-ms-skip-url-encoding": true,
-      "maxLength": 1024
+      "x-ms-skip-url-encoding": true
     }
   },
   "securityDefinitions": {
@@ -900,7 +1010,7 @@
   "security": [
     {
       "apim_key": [
-
+        
       ]
     }
   ],
@@ -922,7 +1032,11 @@
       "description": "Manages event operations."
     },
     {
-      "name": "Rank",
+      "name": "Logs",
+      "description": "Manages reinforcement learning logs."
+    },
+    {
+      "name": "Ranking",
       "description": "Manages ranking operations."
     }
   ],

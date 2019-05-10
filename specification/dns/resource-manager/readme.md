@@ -213,6 +213,3 @@ java:
 regenerate-manager: true
 generate-interface: true
 ```
-```
-```
-```

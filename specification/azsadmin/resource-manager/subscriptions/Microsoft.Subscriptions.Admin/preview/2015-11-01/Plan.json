@@ -56,32 +56,78 @@
             "$ref": "./examples/Plan/List.json"
           }
         },
-        "description": "Get the list of plans under a resource group.",
-        "tags": [
-          "Plans"
-        ],
-        "operationId": "Plans_List",
-        "parameters": [
-          {
-            "$ref": "Subscriptions.json#/parameters/SubscriptionIdParameter"
-          },
-          {
-            "$ref": "Subscriptions.json#/parameters/ResourceGroupParameter"
-          },
-          {
-            "$ref": "Subscriptions.json#/parameters/ApiVersionParameter"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "$ref": "#/definitions/PlanList"
+        "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.Subscriptions.Admin/plans/{plan}/metrics": {
+            "get": {
+                "x-ms-examples": {
+                    "Get the metrics of the specified plan.": {
+                        "$ref": "./examples/Plan/Metrics.json"
+                    }
+                },
+                "description": "Get the metrics of the specified plan.",
+                "tags": [
+                    "Plans"
+                ],
+                "operationId": "Plans_ListMetrics",
+                "parameters": [
+                    {
+                        "$ref": "Subscriptions.json#/parameters/SubscriptionIdParameter"
+                    },
+                    {
+                        "$ref": "Subscriptions.json#/parameters/ResourceGroupParameter"
+                    },
+                    {
+                        "$ref": "Subscriptions.json#/parameters/PlanParameter"
+                    },
+                    {
+                        "$ref": "Subscriptions.json#/parameters/ApiVersionParameter"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "Subscriptions.json#/definitions/MetricList"
+                        }
+                    }
+                }
             }
           }
         },
-        "x-ms-pageable": {
-          "nextLinkName": "nextLink"
+        "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.Subscriptions.Admin/plans/{plan}/metricDefinitions": {
+            "get": {
+                "x-ms-examples": {
+                    "Get the metric definitions of the specified plan.": {
+                        "$ref": "./examples/Plan/MetricDefinitions.json"
+                    }
+                },
+                "description": "Get the metric definitions of the specified plan.",
+                "tags": [
+                    "Plans"
+                ],
+                "operationId": "Plans_ListMetricDefinitions",
+                "parameters": [
+                    {
+                        "$ref": "Subscriptions.json#/parameters/SubscriptionIdParameter"
+                    },
+                    {
+                        "$ref": "Subscriptions.json#/parameters/ResourceGroupParameter"
+                    },
+                    {
+                        "$ref": "Subscriptions.json#/parameters/PlanParameter"
+                    },
+                    {
+                        "$ref": "Subscriptions.json#/parameters/ApiVersionParameter"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "Subscriptions.json#/definitions/MetricDefinitionList"
+                        }
+                    }
+                }
+            }
         }
       }
     },
