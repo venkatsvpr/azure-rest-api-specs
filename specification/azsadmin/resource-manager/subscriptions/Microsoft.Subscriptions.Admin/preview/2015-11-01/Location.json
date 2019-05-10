@@ -46,7 +46,7 @@
                },
                "x-ms-pageable": {
                    "nextLinkName": "nextLink"
-               }               
+               }
             }
         },
         "/subscriptions/{subscriptionId}/providers/Microsoft.Subscriptions.Admin/locations/{location}": {
@@ -112,51 +112,6 @@
                         "schema": {
                             "$ref": "#/definitions/Location"
                         }
-                    }
-                }
-            }
-        },
-        "/subscriptions/{subscriptionId}/providers/Microsoft.Subscriptions.Admin/locations/{location}/operationsStatus/{operationsStatusName}": {
-            "get": {
-                "x-ms-examples": {
-                    "Get the specified operation status.": {
-                        "$ref": "./examples/Location/GetOperationsStatus.json"
-                    }
-                },
-                "description": "Get the operation status.",
-                "tags": [
-                    "Locations"
-                ],
-                "operationId": "Locations_GetOperationsStatus",
-                "parameters": [
-                    {
-                        "$ref": "Subscriptions.json#/parameters/SubscriptionIdParameter"
-                    },
-                    {
-                        "$ref": "Subscriptions.json#/parameters/LocationParameter"
-                    },
-                    {
-                        "$ref": "Subscriptions.json#/parameters/OperationsStatusParameter"
-                    },
-                    {
-                        "$ref": "Subscriptions.json#/parameters/ApiVersionParameter"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/OperationsStatus"
-                        }
-                    },
-                    "202": {
-                        "description": "Accepted"
-                    },
-                    "204": {
-                        "description": "Not Content"
-                    },
-                    "404": {
-                        "description": "Not Found"
                     }
                 }
             }
