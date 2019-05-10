@@ -40,11 +40,11 @@ batch:
 
 ### Profile: hybrid_2018_03_01
 
-These settings apply only when `--csharp-profile=hybrid_2018_03_01` is specified on the command line.
+These settings apply only when `--profile=hybrid_2018_03_01` is specified on the command line.
 
-```yaml $(csharp-profile)=='hybrid_2018_03_01'
-namespace: Microsoft.Azure.Management.Profiles.$(csharp-profile).Compute
-output-folder: $(csharp-sdks-folder)/$(csharp-profile)/Compute/Management.Compute/Generated
+```yaml $(profile)=='hybrid_2018_03_01'
+namespace: Microsoft.Azure.Management.Profiles.$(profile).Compute
+output-folder: $(csharp-sdks-folder)/$(profile)/Compute/Management.Compute/Generated
 batch:
   - tag: package-disks-2018-04
   - tag: package-compute-only-2017-12
@@ -54,11 +54,11 @@ batch:
 
 ### Profile: profile_2017_03_09
 
-These settings apply only when `--csharp-profile=profile_2017_03_09` is specified on the command line.
+These settings apply only when `--profile=profile_2017_03_09` is specified on the command line.
 
-``` yaml $(csharp-profile)=='profile_2017_03_09'
-namespace: Microsoft.Azure.Management.Profiles.$(csharp-profile).Compute
-output-folder: $(csharp-sdks-folder)/$(csharp-profile)/Compute/Management.Compute/Generated
+``` yaml $(profile)=='profile_2017_03_09'
+namespace: Microsoft.Azure.Management.Profiles.$(profile).Compute
+output-folder: $(csharp-sdks-folder)/$(profile)/Compute/Management.Compute/Generated
 
 batch:
  - tag: package-compute-2016-03

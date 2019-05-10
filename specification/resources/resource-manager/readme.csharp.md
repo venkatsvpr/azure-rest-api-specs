@@ -265,9 +265,9 @@ input-file:
 
 These settings apply only when `--profile=hybrid_2018_03_01` is specified on the command line.
 
-```yaml $(csharp-profile)=='hybrid_2018_03_01'
-namespace: Microsoft.Azure.Management.Profiles.$(csharp-profile).ResourceManager  
-output-folder: $(csharp-sdks-folder)/$(csharp-profile)/Resource/Management.ResourceManager/Generated
+```yaml $(profile)=='hybrid_2018_03_01'
+namespace: Microsoft.Azure.Management.Profiles.$(profile).ResourceManager  
+output-folder: $(csharp-sdks-folder)/$(profile)/Resource/Management.ResourceManager/Generated
 
 batch:
   - tag: package-features-2015-12
@@ -283,9 +283,9 @@ batch:
 
 These settings apply only when `--profile=profile_2017_03_09` is specified on the command line.
 
-``` yaml $(csharp-profile)=='profile_2017_03_09'
-namespace: Microsoft.Azure.Management.Profiles.$(csharp-profile).ResourceManager  
-output-folder: $(csharp-sdks-folder)/$(csharp-profile)/Resource/Management.ResourceManager/Generated
+``` yaml $(profile)=='profile_2017_03_09'
+namespace: Microsoft.Azure.Management.Profiles.$(profile).ResourceManager  
+output-folder: $(csharp-sdks-folder)/$(profile)/Resource/Management.ResourceManager/Generated
 
 batch:
  - tag: package-resources-2016-02

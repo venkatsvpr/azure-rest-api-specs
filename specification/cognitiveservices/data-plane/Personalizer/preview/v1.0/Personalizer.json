@@ -7,6 +7,323 @@
   },
   "basePath": "/personalizer/v1.0",
   "paths": {
+    "/configurations/service": {
+      "get": {
+        "tags": [
+          "Configurations"
+        ],
+        "summary": "Get the service configuration.",
+        "operationId": "ServiceConfiguration_Get",
+        "consumes": [
+
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/ServiceConfiguration"
+            }
+          }
+        },
+        "x-ms-examples": {
+          "Successful ServiceConfiguration_Get request": {
+            "$ref": "./examples/ServiceConfiguration_Get.json"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Configurations"
+        ],
+        "summary": "Update the service configuration.",
+        "operationId": "ServiceConfiguration_Update",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "config",
+            "in": "body",
+            "description": "The personalizer service configuration.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ServiceConfiguration"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/ServiceConfiguration"
+            }
+          },
+          "default": {
+            "description": "*** Error Responses: ***\\n\\n * 400 Invalid arguments.\\n\\n * 404 ResourceNotFound."
+          }
+        },
+        "x-ms-examples": {
+          "Successful ServiceConfiguration_Update request": {
+            "$ref": "./examples/ServiceConfiguration_Update.json"
+          }
+        }
+      }
+    },
+    "/configurations/policy": {
+      "get": {
+        "tags": [
+          "Configurations"
+        ],
+        "summary": "Get the policy configuration.",
+        "operationId": "Policy_Get",
+        "consumes": [
+
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/PolicyContract"
+            }
+          }
+        },
+        "x-ms-examples": {
+          "Successful Policy_Get request": {
+            "$ref": "./examples/Policy_Get.json"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Configurations"
+        ],
+        "summary": "Delete the current policy.",
+        "operationId": "Policy_Delete",
+        "consumes": [
+
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/PolicyContract"
+            }
+          }
+        },
+        "x-ms-examples": {
+          "Successful Policy_Delete request": {
+            "$ref": "./examples/Policy_Delete.json"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Configurations"
+        ],
+        "summary": "Update the policy configuration.",
+        "operationId": "Policy_Update",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "policy",
+            "in": "body",
+            "description": "The policy configuration.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/PolicyContract"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/PolicyContract"
+            }
+          },
+          "default": {
+            "description": "*** Error Responses: ***\\n\\n * 400 Invalid arguments.\\n\\n * 404 ResourceNotFound."
+          }
+        },
+        "x-ms-examples": {
+          "Successful Policy_Update request": {
+            "$ref": "./examples/Policy_Update.json"
+          }
+        }
+      }
+    },
+    "/evaluations": {
+      "get": {
+        "tags": [
+          "Evaluations"
+        ],
+        "summary": "List all submitted evaluations.",
+        "operationId": "Evaluations_List",
+        "consumes": [
+
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Evaluation"
+              }
+            }
+          }
+        },
+        "x-ms-examples": {
+          "Successful Evaluations_List request": {
+            "$ref": "./examples/Evaluations_List.json"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Evaluations"
+        ],
+        "summary": "Submit a new evaluation.",
+        "operationId": "Evaluations_Create",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "evaluation",
+            "in": "body",
+            "description": "The evaluation job definition.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/EvaluationContract"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/Evaluation"
+            }
+          },
+          "default": {
+            "description": "*** Error Responses: ***\\n\\n * 400 Invalid arguments.\\n\\n * 404 ResourceNotFound."
+          }
+        },
+        "x-ms-examples": {
+          "Successful Evaluations_Create request": {
+            "$ref": "./examples/Evaluations_Create.json"
+          }
+        }
+      }
+    },
+    "/evaluations/{evaluationId}": {
+      "get": {
+        "tags": [
+          "Evaluations"
+        ],
+        "summary": "Get the evaluation associated with the ID.",
+        "operationId": "Evaluations_Get",
+        "consumes": [
+
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "evaluationId",
+            "in": "path",
+            "description": "ID of the evaluation in question.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/Evaluation"
+            }
+          },
+          "default": {
+            "description": "*** Error Responses: ***\\n\\n * 400 Invalid arguments.\\n\\n * 404 ResourceNotFound."
+          }
+        },
+        "x-ms-examples": {
+          "Successful Evaluations_Get request": {
+            "$ref": "./examples/Evaluations_Get.json"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Evaluations"
+        ],
+        "summary": "Delete the evaluation associated with the ID.",
+        "operationId": "Evaluations_Delete",
+        "consumes": [
+
+        ],
+        "produces": [
+
+        ],
+        "parameters": [
+          {
+            "name": "evaluationId",
+            "in": "path",
+            "description": "ID of the evaluation to delete.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Success"
+          }
+        },
+        "x-ms-examples": {
+          "Successful Evaluations_Delete request": {
+            "$ref": "./examples/Evaluations_Delete.json"
+          }
+        }
+      }
+    },
     "/events/{eventId}/reward": {
       "post": {
         "tags": [
@@ -18,7 +335,7 @@
           "application/json"
         ],
         "produces": [
-          
+
         ],
         "parameters": [
           {
@@ -26,7 +343,8 @@
             "in": "path",
             "description": "The event id this reward applies to.",
             "required": true,
-            "type": "string"
+            "type": "string",
+            "maxLength": 256
           },
           {
             "name": "reward",
@@ -43,7 +361,10 @@
             "description": "Success"
           },
           "default": {
-            "description": "*** Error Responses: ***\\n\\n * 400 Invalid arguments.\\n\\n * 404 ResourceNotFound."
+            "description": "Invalid reward request.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
           }
         },
         "x-ms-examples": {
@@ -61,10 +382,10 @@
         "summary": "Report that the specified event was actually displayed to the user and a reward should be expected for it.",
         "operationId": "Events_Activate",
         "consumes": [
-          
+
         ],
         "produces": [
-          
+
         ],
         "parameters": [
           {
@@ -72,8 +393,134 @@
             "in": "path",
             "description": "The event ID this activation applies to.",
             "required": true,
-            "type": "string"
+            "type": "string",
+            "maxLength": 256
           }
+        ],
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "default": {
+            "description": "Invalid reward request.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        },
+        "x-ms-examples": {
+          "Successful Events_Activate request": {
+            "$ref": "./examples/Events_Activate.json"
+          }
+        }
+      }
+    },
+    "/logs": {
+      "delete": {
+        "tags": [
+          "Logs"
+        ],
+        "summary": "Deletes all the logs.",
+        "operationId": "Log_Delete",
+        "consumes": [
+
+        ],
+        "produces": [
+
+        ],
+        "parameters": [
+
+        ],
+        "responses": {
+          "204": {
+            "description": "Success"
+          }
+        },
+        "x-ms-examples": {
+          "Successful Log_Delete request": {
+            "$ref": "./examples/Log_Delete.json"
+          }
+        }
+      }
+    },
+    "/logs/properties": {
+      "get": {
+        "tags": [
+          "Logs"
+        ],
+        "summary": "Gets logs properties.",
+        "operationId": "Log_GetProperties",
+        "consumes": [
+
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/LogsProperties"
+            }
+          },
+          "default": {
+            "description": "*** Error Responses: ***\\n\\n * 400 Invalid arguments.\\n\\n * 404 ResourceNotFound."
+          }
+        },
+        "x-ms-examples": {
+          "Successful Log_GetProperties request": {
+            "$ref": "./examples/Log_GetProperties.json"
+          }
+        }
+      }
+    },
+    "/model": {
+      "get": {
+        "tags": [
+          "Model"
+        ],
+        "summary": "Get current model.",
+        "operationId": "Model_Get",
+        "consumes": [
+
+        ],
+        "produces": [
+          "application/octet-stream"
+        ],
+        "parameters": [
+
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "file"
+            }
+          }
+        },
+        "x-ms-examples": {
+          "Successful Model_Get request": {
+            "$ref": "./examples/Model_Get.json"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Model"
+        ],
+        "summary": "Resets the model.",
+        "operationId": "Model_Delete",
+        "consumes": [
+
+        ],
+        "produces": [
+
+        ],
+        "parameters": [
+
         ],
         "responses": {
           "204": {
@@ -84,8 +531,39 @@
           }
         },
         "x-ms-examples": {
-          "Successful Events_Activate request": {
-            "$ref": "./examples/Events_Activate.json"
+          "Successful Model_Delete request": {
+            "$ref": "./examples/Model_Delete.json"
+          }
+        }
+      }
+    },
+    "/model/properties": {
+      "get": {
+        "tags": [
+          "Model"
+        ],
+        "summary": "Get model properties.",
+        "operationId": "Model_GetProperties",
+        "consumes": [
+
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/ModelProperties"
+            }
+          }
+        },
+        "x-ms-examples": {
+          "Successful Model_GetProperties request": {
+            "$ref": "./examples/Model_GetProperties.json"
           }
         }
       }
@@ -93,10 +571,10 @@
     "/rank": {
       "post": {
         "tags": [
-          "Ranking"
+          "Rank"
         ],
         "summary": "A Personalizer rank request.",
-        "operationId": "Events_Rank",
+        "operationId": "Rank",
         "consumes": [
           "application/json"
         ],
@@ -122,26 +600,158 @@
             }
           },
           "default": {
-            "description": "*** Error Responses: ***\\n\\n * 400 Invalid arguments.\\n\\n * 404 ResourceNotFound."
+            "description": "Invalid rank request.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
           }
         },
         "x-ms-examples": {
-          "Successful Events_Rank request": {
-            "$ref": "./examples/Events_Rank.json"
+          "Successful Rank request": {
+            "$ref": "./examples/Rank.json"
           }
         }
       }
     }
   },
   "definitions": {
+    "ErrorResponse": {
+      "description": "Used to return an error to the client",
+      "required": [
+        "error"
+      ],
+      "type": "object",
+      "properties": {
+        "error": {
+          "$ref": "#/definitions/PersonalizerError",
+          "description": "The error object."
+        }
+      }
+    },
+    "PersonalizerError": {
+      "description": "The error object.",
+      "required": [
+        "code",
+        "message"
+      ],
+      "type": "object",
+      "properties": {
+        "code": {
+          "description": "High level error code.",
+          "enum": [
+            "BadRequest",
+            "ResourceNotFound",
+            "InternalServerError"
+          ],
+          "type": "string",
+          "x-ms-enum": {
+            "name": "ErrorCode",
+            "modelAsString": true,
+            "values": [
+              {
+                "value" : "BadRequest",
+                "description" : "Request could not be understood by the server."
+              },
+              {
+                "value" : "ResourceNotFound",
+                "description" : "Requested resource does not exist on the server."
+              },
+              {
+                "value" : "InternalServerError",
+                "description" : "A generic error has occurred on the server."
+              }
+            ]
+          }
+        },
+        "message": {
+          "description": "A message explaining the error reported by the service.",
+          "type": "string"
+        },
+        "target": {
+          "description": "Error source element.",
+          "type": "string"
+        },
+        "details": {
+          "description": "An array of details about specific errors that led to this reported error.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PersonalizerError"
+          }
+        },
+        "innerError": {
+          "$ref": "#/definitions/InternalError",
+          "description": "Finer error details."
+        }
+      }
+    },
+    "InternalError": {
+      "description": "An object containing more specific information than the parent object about the error.",
+      "type": "object",
+      "properties": {
+        "code": {
+          "description": "Detailed error code.",
+          "type": "string"
+        },
+        "innererror": {
+          "$ref": "#/definitions/InternalError",
+          "description": "The error object."
+        }
+      }
+    },
     "RewardRequest": {
       "description": "Reward given to a rank response.",
+      "required": [
+        "value"
+      ],
       "type": "object",
       "properties": {
         "value": {
           "format": "float",
-          "description": "Reward to be assigned to an action. Value must be between -1 and 1 inclusive.",
+          "description": "Reward to be assigned to an action. Value should be between -1 and 1 inclusive.",
           "type": "number"
+        }
+      }
+    },
+    "LogsProperties": {
+      "type": "object",
+      "properties": {
+        "dateRange": {
+          "allOf": [
+            {
+              "$ref": "#/definitions/DateRange"
+            }
+          ],
+          "readOnly": true
+        }
+      }
+    },
+    "DateRange": {
+      "type": "object",
+      "properties": {
+        "from": {
+          "format": "date-time",
+          "type": "string",
+          "readOnly": true
+        },
+        "to": {
+          "format": "date-time",
+          "type": "string",
+          "readOnly": true
+        }
+      }
+    },
+    "ModelProperties": {
+      "type": "object",
+      "properties": {
+        "creationTime": {
+          "format": "date-time",
+          "type": "string",
+          "readOnly": true
+        },
+        "lastModifiedTime": {
+          "format": "date-time",
+          "type": "string",
+          "readOnly": true
         }
       }
     },
@@ -175,6 +785,7 @@
         },
         "eventId": {
           "description": "Optionally pass an eventId that uniquely identifies this Rank event. \r\nIf null, the service generates a unique eventId. The eventId will be used for\r\nassociating this request with its reward, as well as seeding the pseudo-random\r\ngenerator when making a Personalizer call.",
+          "maxLength": 256,
           "type": "string"
         },
         "deferActivation": {
@@ -194,6 +805,7 @@
       "properties": {
         "id": {
           "description": "Id of the action.",
+          "maxLength": 256,
           "type": "string"
         },
         "features": {
@@ -219,11 +831,13 @@
         },
         "eventId": {
           "description": "The eventId for the round trip from request to response.",
+          "maxLength": 256,
           "type": "string",
           "readOnly": true
         },
         "rewardActionId": {
           "description": "The action chosen by the Personalizer service. This is the action for which to report the reward. This might not be the \r\nfirst found in \u0027ranking\u0027 if an action in the request in first position was part of the excluded ids.",
+          "maxLength": 256,
           "type": "string",
           "readOnly": true
         }
@@ -235,14 +849,31 @@
       "properties": {
         "id": {
           "description": "Id of the action",
+          "maxLength": 256,
           "type": "string",
           "readOnly": true
         },
         "probability": {
           "format": "float",
           "description": "Probability of the action",
+          "maximum": 1,
+          "minimum": 0,
           "type": "number",
           "readOnly": true
+        }
+      }
+    },
+    "ContainerStatus": {
+      "type": "object",
+      "properties": {
+        "service": {
+          "type": "string"
+        },
+        "apiStatus": {
+          "type": "string"
+        },
+        "apiStatusMessage": {
+          "type": "string"
         }
       }
     }
@@ -255,7 +886,8 @@
       "required": true,
       "type": "string",
       "x-ms-parameter-location": "client",
-      "x-ms-skip-url-encoding": true
+      "x-ms-skip-url-encoding": true,
+      "maxLength": 1024
     }
   },
   "securityDefinitions": {
@@ -268,17 +900,29 @@
   "security": [
     {
       "apim_key": [
-        
+
       ]
     }
   ],
   "tags": [
     {
+      "name": "Evaluations",
+      "description": "Manages counterfactual evaluation operations."
+    },
+    {
+      "name": "Model",
+      "description": "Manages reinforcement learning configuration operations."
+    },
+    {
+      "name": "Configurations",
+      "description": "Manages configuration operations."
+    },
+    {
       "name": "Events",
       "description": "Manages event operations."
     },
     {
-      "name": "Ranking",
+      "name": "Rank",
       "description": "Manages ranking operations."
     }
   ],
