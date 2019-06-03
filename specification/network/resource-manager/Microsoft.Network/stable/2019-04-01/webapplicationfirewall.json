@@ -588,7 +588,7 @@
           "type": "string"
         },
         "ruleSetType": {
-          "description": "RuleSetType - AzureManagedRuleSet or OWASP RuleSets.",
+          "description": "RuleSetType - DefaultRuleSet or CRS RuleSet.",
           "type": "string"
         }
       },
@@ -613,6 +613,13 @@
         }
       ]
     },
+    "Exclusions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/OWASPRuleSetExclusion"
+      },
+      "description": "The exclusion list."
+    },
     "OWASPRuleSetConfiguration": {
       "properties": {
         "disabledRuleGroups": {
@@ -621,13 +628,6 @@
             "$ref": "#/definitions/OWASPRuleSetDisabledRuleGroup"
           },
           "description": "The disabled rule groups."
-        },
-        "exclusions": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/OWASPRuleSetExclusion"
-          },
-          "description": "The exclusion list."
         }
       },
       "description": "OWASP rule set configuration."
