@@ -329,6 +329,10 @@
             "name": "WebApplicationFirewallPolicyResourceState",
             "modelAsString": true
           }
+        },
+        "botDetection": {
+          "description": "Describes bot detection for policy.",
+          "$ref": "#/definitions/BotDetection"
         }
       }
     },
@@ -684,6 +688,30 @@
         "selector": {
           "type": "string",
           "description": "When matchVariable is a collection, operator used to specify which elements in the collection this exclusion applies to."
+        }
+      }
+    },
+    "BotDetection": {
+      "description": "Allows the detection of bots with a customizable list of exclusions",
+      "properties": {
+        "state": {
+          "description": "Describes if the bot detection is in enabled or disabled state.",
+          "type": "string",
+          "enum": [
+            "Enabled",
+            "Disabled"
+          ],
+          "x-ms-enum": {
+            "name": "BotDetectionEnabledState",
+            "modelAsString": true
+          }
+        },
+        "exclusions": {
+          "description": "List of IPs which will be excluded from the bot list",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
       }
     }
