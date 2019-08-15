@@ -707,7 +707,7 @@
           }
         },
         "exclusions": {
-          "description": "List of IPs which will be excluded from the bot list",
+          "description": "List of IP addresses which will be excluded from the bot list",
           "type": "array",
           "items": {
             "type": "string"
