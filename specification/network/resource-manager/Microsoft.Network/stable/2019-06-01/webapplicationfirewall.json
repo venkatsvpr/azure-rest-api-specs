@@ -467,18 +467,22 @@
           }
         },
         "action": {
-          "description": "Type of Actions.",
-          "type": "string",
-          "enum": [
-            "Allow",
-            "Block",
-            "Log"
-          ],
-          "x-ms-enum": {
-            "name": "WebApplicationFirewallAction",
-            "modelAsString": true
-          }
+          "description": "Which action should be triggered by the custom rule.",
+          "$ref": "#/definitions/Action"
         }
+      }
+    },
+    "Action": {
+      "description": "Action to be taken for a captured request.",
+      "type": "string",
+      "enum": [
+        "Allow",
+        "Block",
+        "Log"
+      ],
+      "x-ms-enum": {
+        "name": "WebApplicationFirewallAction",
+        "modelAsString": true
       }
     },
     "Transform": {
@@ -671,19 +675,8 @@
           }
         },
         "selectorMatchOperator": {
-          "type": "string",
-          "enum": [
-            "Equals",
-            "Contains",
-            "StartsWith",
-            "EndsWith",
-            "EqualsAny"
-          ],
           "description": "When matchVariable is a collection, operate on the selector to specify which elements in the collection this exclusion applies to.",
-          "x-ms-enum": {
-            "name": "OwaspCrsExclusionEntrySelectorMatchOperator",
-            "modelAsString": true
-          }
+          "$ref": "#/definitions/MatchOperator"
         },
         "selector": {
           "type": "string",
@@ -691,26 +684,112 @@
         }
       }
     },
+    "MatchOperator": {
+      "type": "string",
+      "enum": [
+        "Equals",
+        "Contains",
+        "StartsWith",
+        "EndsWith",
+        "EqualsAny"
+      ],
+      "description": "Defines the logic for comparing two strings.",
+      "x-ms-enum": {
+        "name": "OwaspCrsExclusionEntrySelectorMatchOperator",
+        "modelAsString": true
+      }
+    },
     "BotDetection": {
-      "description": "Allows the detection of bots with a customizable list of exclusions",
+      "description": "Allows the detection of bots and specify action for each bot category.",
+      "required": [
+        "good", 
+        "neutral", 
+        "bad"
+      ],
       "properties": {
-        "state": {
-          "description": "Describes if the bot detection is in enabled or disabled state.",
-          "type": "string",
-          "enum": [
-            "Enabled",
-            "Disabled"
-          ],
-          "x-ms-enum": {
-            "name": "BotDetectionEnabledState",
-            "modelAsString": true
+        "good": {
+          "description": "Describes the action to be taken when detecting a good bot.",
+          "properties": {
+            "action": {
+              "description": "Describes which action should be triggered by the bot category.",
+              "$ref": "#/definitions/Action"
+            }
           }
         },
-        "exclusions": {
-          "description": "List of IP addresses which will be excluded from the bot list",
+        "neutral": {
+          "description": "Describes the action to be taken when detecting a neutral bot.",
+          "properties": {
+            "action": {
+              "description": "Describes which action should be triggered by the bot category.",
+              "$ref": "#/definitions/Action"
+            }
+          }
+        },
+        "bad": {
+          "description": "Describes the action to be taken when detecting a bad bot.",
+          "properties": {
+            "action": {
+              "description": "Describes which action should be triggered by the bot category.",
+              "$ref": "#/definitions/Action"
+            }
+          }
+        },
+        "overrides": {
+          "description": "List of custom bot categories which take precedence over the predefined categories.",
           "type": "array",
           "items": {
-            "type": "string"
+            "$ref": "#/definitions/CustomBotCategory"
+          }
+        }
+      }
+    },
+    "BotIdentifier": {
+      "description": "Defines a way to capture a bot request.",
+      "required": [
+        "type",
+        "value",
+        "matchOperator"
+      ],
+      "properties": {
+        "type": {
+          "description": "Describes which property of the request to match against.",
+          "type": "string",
+          "enum": [
+            "IP Address",
+            "MAC Address"
+          ]
+        },
+        "value": {
+          "description": "Describes the value against which property of the request will be matched.",
+          "type": "string"
+        },
+        "matchOperator": {
+          "description": "Describes how the value will be compared to the request property.",
+          "$ref": "#/definitions/MatchOperator"
+        }
+      }
+    },
+    "CustomBotCategory": {
+      "description": "Defines a collection of bot identifier with an associated action.",
+      "required": [
+        "action",
+        "bots",
+        "name"
+      ],
+      "properties": {
+        "name": {
+          "description": "Name of the custom bot category.",
+          "type": "string"
+        },
+        "action": {
+          "description": "Describes which action should be triggered by the custom bot category.",
+          "$ref": "#/definitions/Action"
+        },
+        "bots": {
+          "description": "Describes the list of bot requests to be captured by this bot category.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/BotIdentifier"
           }
         }
       }
