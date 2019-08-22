@@ -739,59 +739,32 @@
         }
       }
     },
-    "BotIdentifier": {
-      "description": "Defines a way to capture a bot request.",
-      "required": [
-        "type",
-        "value",
-        "matchOperator"
-      ],
-      "properties": {
-        "type": {
-          "description": "Describes which property of the request to match against.",
-          "type": "string",
-          "enum": [
-            "IP Address"
-          ]
-        },
-        "value": {
-          "description": "Describes the value against which property of the request will be matched.",
-          "type": "string"
-        },
-        "matchOperator": {
-          "description": "Describes how the value will be compared to the request property.",
-          "type": "string",
-          "enum": [
-            "Equals",
-            "Contains",
-            "StartsWith",
-            "EndsWith",
-            "EqualsAny"
-          ]
-        }
-      }
-    },
     "CustomBotCategory": {
       "description": "Defines a collection of bot identifier with an associated action.",
       "required": [
         "action",
-        "bots",
-        "name"
+        "matchConditions",
+        "priority"
       ],
       "properties": {
         "name": {
           "description": "Name of the custom bot category.",
-          "type": "string"
+          "type": "string",
+          "maxLength": 128
         },
         "action": {
           "description": "Describes which action should be triggered by the custom bot category.",
           "$ref": "#/definitions/Action"
         },
-        "bots": {
-          "description": "Describes the list of bot requests to be captured by this bot category.",
+        "priority": {
+          "description": "Describes priority of the category. Categories with a lower value will be evaluated before categories with a higher value.",
+          "type": "integer"
+        },
+        "matchConditions": {
+          "description": "List of match conditions.",
           "type": "array",
           "items": {
-            "$ref": "#/definitions/BotIdentifier"
+            "$ref": "#/definitions/MatchCondition"
           }
         }
       }
