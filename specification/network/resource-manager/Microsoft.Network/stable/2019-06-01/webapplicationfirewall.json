@@ -331,7 +331,7 @@
           }
         },
         "botDetection": {
-          "description": "Describes bot detection for policy.",
+          "description": "Describes bot detection settings for the policy.",
           "$ref": "#/definitions/BotDetection"
         }
       }
@@ -676,27 +676,23 @@
         },
         "selectorMatchOperator": {
           "description": "When matchVariable is a collection, operate on the selector to specify which elements in the collection this exclusion applies to.",
-          "$ref": "#/definitions/MatchOperator"
+          "type": "string",
+          "enum": [
+            "Equals",
+            "Contains",
+            "StartsWith",
+            "EndsWith",
+            "EqualsAny"
+          ],
+          "x-ms-enum": {
+            "name": "OwaspCrsExclusionEntrySelectorMatchOperator",
+            "modelAsString": true
+          }
         },
         "selector": {
           "type": "string",
           "description": "When matchVariable is a collection, operator used to specify which elements in the collection this exclusion applies to."
         }
-      }
-    },
-    "MatchOperator": {
-      "type": "string",
-      "enum": [
-        "Equals",
-        "Contains",
-        "StartsWith",
-        "EndsWith",
-        "EqualsAny"
-      ],
-      "description": "Defines the logic for comparing two strings.",
-      "x-ms-enum": {
-        "name": "OwaspCrsExclusionEntrySelectorMatchOperator",
-        "modelAsString": true
       }
     },
     "BotDetection": {
@@ -755,8 +751,7 @@
           "description": "Describes which property of the request to match against.",
           "type": "string",
           "enum": [
-            "IP Address",
-            "MAC Address"
+            "IP Address"
           ]
         },
         "value": {
@@ -765,7 +760,14 @@
         },
         "matchOperator": {
           "description": "Describes how the value will be compared to the request property.",
-          "$ref": "#/definitions/MatchOperator"
+          "type": "string",
+          "enum": [
+            "Equals",
+            "Contains",
+            "StartsWith",
+            "EndsWith",
+            "EqualsAny"
+          ]
         }
       }
     },
