@@ -703,6 +703,14 @@
         "bad"
       ],
       "properties": {
+        "state": {
+          "description": "Describes if bot detection is in enabled state or disabled state.",
+          "type": "string",
+          "enum": [
+            "Disabled",
+            "Enabled"
+          ]
+        },
         "good": {
           "description": "Describes the action to be taken when detecting a good bot.",
           "properties": {
@@ -744,6 +752,7 @@
       "required": [
         "action",
         "matchConditions",
+        "name",
         "priority"
       ],
       "properties": {
