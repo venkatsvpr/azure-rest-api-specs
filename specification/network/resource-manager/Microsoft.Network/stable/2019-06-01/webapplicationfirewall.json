@@ -330,9 +330,9 @@
             "modelAsString": true
           }
         },
-        "botDetection": {
-          "description": "Describes bot detection settings for the policy.",
-          "$ref": "#/definitions/BotDetection"
+        "botProtection": {
+          "description": "Describes bot protection settings for the policy.",
+          "$ref": "#/definitions/BotProtection"
         }
       }
     },
@@ -675,7 +675,6 @@
           }
         },
         "selectorMatchOperator": {
-          "description": "When matchVariable is a collection, operate on the selector to specify which elements in the collection this exclusion applies to.",
           "type": "string",
           "enum": [
             "Equals",
@@ -684,6 +683,7 @@
             "EndsWith",
             "EqualsAny"
           ],
+          "description": "When matchVariable is a collection, operate on the selector to specify which elements in the collection this exclusion applies to.",
           "x-ms-enum": {
             "name": "OwaspCrsExclusionEntrySelectorMatchOperator",
             "modelAsString": true
@@ -695,24 +695,22 @@
         }
       }
     },
-    "BotDetection": {
+    "BotProtection": {
       "description": "Allows the detection of bots and specify action for each bot category.",
       "required": [
-        "good", 
-        "neutral", 
-        "bad"
+        "ipreputation"
       ],
       "properties": {
         "state": {
-          "description": "Describes if bot detection is in enabled state or disabled state.",
+          "description": "Describes if bot protection is in enabled state or disabled state. Defaults to Disabled if not specified.",
           "type": "string",
           "enum": [
             "Disabled",
             "Enabled"
           ]
         },
-        "good": {
-          "description": "Describes the action to be taken when detecting a good bot.",
+        "ipreputation": {
+          "description": "Describes the action to be taken when the requester's ip address has a bad reputation.",
           "properties": {
             "action": {
               "description": "Describes which action should be triggered by the bot category.",
@@ -720,57 +718,8 @@
             }
           }
         },
-        "neutral": {
-          "description": "Describes the action to be taken when detecting a neutral bot.",
-          "properties": {
-            "action": {
-              "description": "Describes which action should be triggered by the bot category.",
-              "$ref": "#/definitions/Action"
-            }
-          }
-        },
-        "bad": {
-          "description": "Describes the action to be taken when detecting a bad bot.",
-          "properties": {
-            "action": {
-              "description": "Describes which action should be triggered by the bot category.",
-              "$ref": "#/definitions/Action"
-            }
-          }
-        },
-        "overrides": {
-          "description": "List of custom bot categories which take precedence over the predefined categories.",
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/CustomBotCategory"
-          }
-        }
-      }
-    },
-    "CustomBotCategory": {
-      "description": "Defines a collection of bot identifier with an associated action.",
-      "required": [
-        "action",
-        "matchConditions",
-        "name",
-        "priority"
-      ],
-      "properties": {
-        "name": {
-          "description": "Name of the custom bot category.",
-          "type": "string",
-          "maxLength": 128
-        },
-        "action": {
-          "description": "Describes which action should be triggered by the custom bot category.",
-          "$ref": "#/definitions/Action"
-        },
-        "priority": {
-          "description": "Describes priority of the category. Categories with a lower value will be evaluated before categories with a higher value.",
-          "type": "integer"
-        },
-        "matchConditions": {
-          "description": "List of match conditions.",
+        "exclusions": {
+          "description": "List of exclusions which will override the bot category action to Allow.",
           "type": "array",
           "items": {
             "$ref": "#/definitions/MatchCondition"
