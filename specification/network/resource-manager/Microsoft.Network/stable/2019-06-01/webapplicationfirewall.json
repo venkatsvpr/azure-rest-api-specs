@@ -487,9 +487,13 @@
     },
     "ManagedRuleSetSkip": {
       "description": "Identifies a managed ruleset as well as its managed rule groups which should be skipped.",
+      "required": [
+        "id",
+        "skippedManagedRuleGroups"
+      ],
       "properties": {
         "skippedManagedRuleGroups": {
-          "description": "List of managed rule groups which should be skipped. If left empty the entire ruleset is skipped.",
+          "description": "List of managed rule groups which should be skipped.",
           "type": "array",
           "items": {
             "type": "#/definitions/ManagedRuleGroupSkip"
@@ -503,9 +507,13 @@
     },
     "ManagedRuleGroupSkip": {
       "description": "Identifies a managed rule group as well as its managed rules which should be skipped.",
+      "required": [
+        "skippedManagedRules",
+        "id"
+      ],
       "properties": {
         "skippedManagedRules": {
-          "description": "List of managed rule ids which should be skipped. If left empty the entire rule group is skipped.",
+          "description": "List of managed rule ids which should be skipped.",
           "type": "array",
           "items": {
             "type": "string"
