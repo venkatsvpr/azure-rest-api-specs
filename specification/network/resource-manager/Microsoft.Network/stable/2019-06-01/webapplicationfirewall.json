@@ -329,10 +329,6 @@
             "name": "WebApplicationFirewallPolicyResourceState",
             "modelAsString": true
           }
-        },
-        "botProtection": {
-          "description": "Describes bot protection settings for the policy.",
-          "$ref": "#/definitions/BotProtection"
         }
       }
     },
@@ -467,22 +463,26 @@
           }
         },
         "action": {
-          "description": "Which action should be triggered by the custom rule.",
-          "$ref": "#/definitions/Action"
+          "description": "Type of Actions.",
+          "type": "string",
+          "enum": [
+            "Allow",
+            "Block",
+            "Log",
+            "Skip"
+          ],
+          "x-ms-enum": {
+            "name": "WebApplicationFirewallAction",
+            "modelAsString": true
+          }
+        },
+        "skippedRuleIds": {
+          "description": "Which rules should be skipped if the match conditions are met. (Skip action only)",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
-      }
-    },
-    "Action": {
-      "description": "Action to be taken for a captured request.",
-      "type": "string",
-      "enum": [
-        "Allow",
-        "Block",
-        "Log"
-      ],
-      "x-ms-enum": {
-        "name": "WebApplicationFirewallAction",
-        "modelAsString": true
       }
     },
     "Transform": {
@@ -692,38 +692,6 @@
         "selector": {
           "type": "string",
           "description": "When matchVariable is a collection, operator used to specify which elements in the collection this exclusion applies to."
-        }
-      }
-    },
-    "BotProtection": {
-      "description": "Allows the detection of bots and specify action for each bot category.",
-      "required": [
-        "ipreputation"
-      ],
-      "properties": {
-        "state": {
-          "description": "Describes if bot protection is in enabled state or disabled state. Defaults to Disabled if not specified.",
-          "type": "string",
-          "enum": [
-            "Disabled",
-            "Enabled"
-          ]
-        },
-        "ipreputation": {
-          "description": "Describes the action to be taken when the requester's ip address has a bad reputation.",
-          "properties": {
-            "action": {
-              "description": "Describes which action should be triggered by the bot category.",
-              "$ref": "#/definitions/Action"
-            }
-          }
-        },
-        "exclusions": {
-          "description": "List of exclusions which will override the bot category action to Allow.",
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/MatchCondition"
-          }
         }
       }
     }
