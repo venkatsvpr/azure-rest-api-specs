@@ -468,11 +468,62 @@
           "enum": [
             "Allow",
             "Block",
-            "Log"
+            "Log",
+            "Skip"
           ],
           "x-ms-enum": {
             "name": "WebApplicationFirewallAction",
             "modelAsString": true
+          }
+        },
+        "skippedManagedRuleSets": {
+          "description": "List of Managed RuleSets that has to be skipped if the match conditions are met.",
+          "type": "array",
+          "items": {
+            "type": "#/definitions/ManagedRuleSetSkip"
+          }
+        }
+      }
+    },
+    "ManagedRuleSetSkip": {
+      "description": "Identifies a Managed rule set as well as its rule groups and rules which should be skipped.",
+      "required": [
+        "ruleSetType",
+        "ruleSetVersion"
+      ],
+      "properties": {
+        "ruleSetType": {
+          "description": "Defines the rule set type.",
+          "type": "string"
+        },
+        "ruleSetVersion": {
+          "description": "Defines the rule set version.",
+          "type": "string"
+        },
+        "ruleGroups": {
+          "description": "List of managed rule groups which should be skipped.",
+          "type": "array",
+          "items": {
+            "type": "#/definitions/ManagedRuleGroupSkip"
+          }
+        }
+      }
+    },
+    "ManagedRuleGroupSkip": {
+      "description": "Identifies a managed rule group as well as its managed rules which should be skipped.",
+      "required": [
+        "ruleGroupName"
+      ],
+      "properties": {
+        "ruleGroupName": {
+          "description": "Describes the managed rule group to override.",
+          "type": "string"
+        },
+        "rules": {
+          "description": "List of managed rule ids which should be skipped.",
+          "type": "array",
+          "items": {
+            "type": "string"
           }
         }
       }
