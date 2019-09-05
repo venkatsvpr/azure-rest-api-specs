@@ -468,11 +468,62 @@
           "enum": [
             "Allow",
             "Block",
-            "Log"
+            "Log",
+            "Skip"
           ],
           "x-ms-enum": {
             "name": "WebApplicationFirewallAction",
             "modelAsString": true
+          }
+        },
+        "skipActionData": {
+          "description": "List of Managed RuleSets, Managed Rule Groups and Managed Rules to be skipped. (Skip action only)",
+          "type": "array",
+          "items": {
+            "type": "#/definitions/SkipActionRuleSet"
+          }
+        }
+      }
+    },
+    "SkipActionRuleSet": {
+      "description": "Identifies a Rule Set which should be skipped.",
+      "required": [
+        "ruleSetType",
+        "ruleSetVersion"
+      ],
+      "properties": {
+        "ruleSetType": {
+          "description": "Defines the Rule Set type.",
+          "type": "string"
+        },
+        "ruleSetVersion": {
+          "description": "Defines the Rule Set version.",
+          "type": "string"
+        },
+        "ruleGroups": {
+          "description": "List of Rule Groups which should be skipped.",
+          "type": "array",
+          "items": {
+            "type": "#/definitions/SkipActionRuleGroup"
+          }
+        }
+      }
+    },
+    "SkipActionRuleGroup": {
+      "description": "Identifies a Rule Group as well as its rules which should be skipped.",
+      "required": [
+        "ruleGroupName"
+      ],
+      "properties": {
+        "ruleGroupName": {
+          "description": "Describes the Rule Group to override.",
+          "type": "string"
+        },
+        "rules": {
+          "description": "List of rule ids which should be skipped.",
+          "type": "array",
+          "items": {
+            "type": "string"
           }
         }
       }
