@@ -480,47 +480,50 @@
           "description": "List of rulesets should be skipped if the match conditions are met. (Skip action only)",
           "type": "array",
           "items": {
-            "type": "#/definitions/ManagedRuleSetSkip"
+            "type": "#/definitions/ManagedRuleSetReference"
           }
         }
       }
     },
-    "ManagedRuleSetSkip": {
-      "description": "Identifies a managed ruleset as well as its managed rule groups which should be skipped.",
+    "ManagedRuleSetReference": {
+      "description": "Identifies a managed ruleset.",
       "required": [
-        "id",
-        "skippedManagedRuleGroups"
+        "ruleSetName",
+        "ruleSetVersion"
       ],
       "properties": {
-        "skippedManagedRuleGroups": {
-          "description": "List of managed rule groups which should be skipped.",
+        "managedRuleGroups": {
+          "description": "List of managed rule groups.",
           "type": "array",
           "items": {
-            "type": "#/definitions/ManagedRuleGroupSkip"
+            "type": "#/definitions/ManagedRuleGroupReference"
           }
         },
-        "id": {
-          "description": "Unique identifier for the targeted managed ruleset",
+        "ruleSetName": {
+          "description": "Name of the managed ruleset",
+          "type": "string"
+        },
+        "ruleSetVersion": {
+          "description": "Version of the managed ruleset",
           "type": "string"
         }
       }
     },
-    "ManagedRuleGroupSkip": {
-      "description": "Identifies a managed rule group as well as its managed rules which should be skipped.",
+    "ManagedRuleGroupReference": {
+      "description": "Identifies a managed rule group.",
       "required": [
-        "skippedManagedRules",
-        "id"
+        "ruleGroupName"
       ],
       "properties": {
-        "skippedManagedRules": {
-          "description": "List of managed rule ids which should be skipped.",
+        "managedRules": {
+          "description": "List of managed rule ids.",
           "type": "array",
           "items": {
             "type": "string"
           }
         },
-        "id": {
-          "description": "Unique identifier for the targeted managed rule group",
+        "ruleGroupName": {
+          "description": "Name of the managed rule group",
           "type": "string"
         }
       }
