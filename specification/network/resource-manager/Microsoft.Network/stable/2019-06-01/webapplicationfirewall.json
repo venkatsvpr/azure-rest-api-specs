@@ -480,51 +480,8 @@
           "description": "List of rulesets should be skipped if the match conditions are met. (Skip action only)",
           "type": "array",
           "items": {
-            "type": "#/definitions/ManagedRuleSetReference"
+            "type": "#/definitions/ManagedRuleSet"
           }
-        }
-      }
-    },
-    "ManagedRuleSetReference": {
-      "description": "Identifies a ruleset.",
-      "required": [
-        "ruleSetType",
-        "ruleSetVersion"
-      ],
-      "properties": {
-        "ruleGroups": {
-          "description": "List of rule groups.",
-          "type": "array",
-          "items": {
-            "type": "#/definitions/ManagedRuleGroupReference"
-          }
-        },
-        "ruleSetType": {
-          "description": "Defines the rule set type to use.",
-          "type": "string"
-        },
-        "ruleSetVersion": {
-          "description": "Defines the version of the rule set to use.",
-          "type": "string"
-        }
-      }
-    },
-    "ManagedRuleGroupReference": {
-      "description": "Identifies a rule group.",
-      "required": [
-        "ruleGroupName"
-      ],
-      "properties": {
-        "rules": {
-          "description": "List of the managed rule ids.",
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "ruleGroupName": {
-          "description": "Name of the managed rule group.",
-          "type": "string"
         }
       }
     },
