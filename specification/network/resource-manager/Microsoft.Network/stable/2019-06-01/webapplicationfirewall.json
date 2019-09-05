@@ -486,44 +486,44 @@
       }
     },
     "ManagedRuleSetReference": {
-      "description": "Identifies a managed ruleset.",
+      "description": "Identifies a ruleset.",
       "required": [
-        "ruleSetName",
+        "ruleSetType",
         "ruleSetVersion"
       ],
       "properties": {
-        "managedRuleGroups": {
-          "description": "List of managed rule groups.",
+        "ruleGroups": {
+          "description": "List of rule groups.",
           "type": "array",
           "items": {
             "type": "#/definitions/ManagedRuleGroupReference"
           }
         },
-        "ruleSetName": {
-          "description": "Name of the managed ruleset",
+        "ruleSetType": {
+          "description": "Defines the rule set type to use.",
           "type": "string"
         },
         "ruleSetVersion": {
-          "description": "Version of the managed ruleset",
+          "description": "Defines the version of the rule set to use.",
           "type": "string"
         }
       }
     },
     "ManagedRuleGroupReference": {
-      "description": "Identifies a managed rule group.",
+      "description": "Identifies a rule group.",
       "required": [
         "ruleGroupName"
       ],
       "properties": {
-        "managedRules": {
-          "description": "List of managed rule ids.",
+        "rules": {
+          "description": "List of the managed rule ids.",
           "type": "array",
           "items": {
             "type": "string"
           }
         },
         "ruleGroupName": {
-          "description": "Name of the managed rule group",
+          "description": "Name of the managed rule group.",
           "type": "string"
         }
       }
